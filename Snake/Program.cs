@@ -22,6 +22,10 @@ namespace Snake
             line.DrawLine();
 
 
+            VerticalLine line2 = new VerticalLine(14, 5, 10, '%');
+            line2.DrawLine();
+
+
             Console.ReadLine();
         }
     }
