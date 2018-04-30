@@ -62,6 +62,12 @@ namespace Snake
             }
         }
 
+        public void Clear()
+        {
+            sym = ' ';
+            Draw();
+        }
+
         //для наглядности отладчика
         public override string ToString()
         {
