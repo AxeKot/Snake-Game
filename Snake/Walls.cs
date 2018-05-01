@@ -25,11 +25,12 @@ namespace Snake
             wallList.Add(rightLine);
         }
 
-        internal bool IsHit(Figure figure)
-        {
+        internal bool IsHit(Snake snake)
+        {            
+            Point head = snake.GetNextPoint();
             foreach(var wall in wallList)
             {
-                if (wall.IsHit(figure))
+                if (wall.IsHit(head))
                 {
                     return true;
                 }
