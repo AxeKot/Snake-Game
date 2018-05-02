@@ -30,6 +30,13 @@ namespace Snake
 
             FoodCreator foodCreator = new FoodCreator(80, 25, '$'); //габариты экрана и символ еды
             Point food = foodCreator.CreateFood();
+            while (true) //проверка на генерацию еды внутри змеи
+            {
+                if (!snake.IsHit(food))
+                    break;
+                else
+                    food = foodCreator.CreateFood();
+            }
             food.Draw();
 
             while (true)
@@ -40,7 +47,13 @@ namespace Snake
                 }
                 if (snake.Eat(food)) //встретится ли змейка с едой
                 {
-                    food = foodCreator.CreateFood();
+                    while (true) //проверка на генерацию еды внутри змеи
+                    {
+                        if (!snake.IsHit(food))
+                            break;
+                        else
+                            food = foodCreator.CreateFood();
+                    }
                     food.Draw();
                 }
                 else
@@ -56,9 +69,28 @@ namespace Snake
                 }
             }
 
-                
-           // Console.ReadLine();
+
+            WriteGameOver();
+            Console.ReadLine();
 
         }
+        static void WriteGameOver()
+            {
+                int xOffset = 25;
+                int yOffset = 8;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.SetCursorPosition(xOffset, yOffset++);
+                WriteText("============================", xOffset, yOffset++);
+                WriteText("G A M E   O V E R", xOffset + 6, yOffset++);
+                yOffset++;
+                WriteText("AxeKot 2018", xOffset + 9, yOffset++);
+                WriteText("============================", xOffset, yOffset++);
+            }
+
+            static void WriteText(String text, int xOffset, int yOffset)
+            {
+                Console.SetCursorPosition(xOffset, yOffset);
+                Console.WriteLine(text);
+            }
     }
 }
